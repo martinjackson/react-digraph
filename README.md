@@ -1,3 +1,9 @@
+
+Taken from [Uber's react-digraph](https://github.com/uber/react-digraph)
+- I've addedd title/text to edges
+- next adding larger boxes to supoport paragraphs
+
+
 # react-digraph
 ![Demo](example.gif?raw=true)
 ## Overview
