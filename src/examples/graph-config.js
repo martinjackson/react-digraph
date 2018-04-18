@@ -23,6 +23,7 @@
 */
 import React from 'react';
 
+
 const EmptyShape = (
   <symbol viewBox="0 0 100 100" id="empty">
     <circle cx="50" cy="50" r="45"></circle>
@@ -53,7 +54,7 @@ const SpecialEdgeShape = (
   </symbol>
 )
 
-export default {
+let GraphConfig = {
   NodeTypes: {
     empty: {
       typeText: "None",
@@ -65,13 +66,13 @@ export default {
       shapeId: "#special",
       shape: SpecialShape
     }
-  }, 
+  },
   NodeSubtypes: {
     specialChild: {
       shapeId: "#specialChild",
       shape: SpecialChildShape
     }
-  }, 
+  },
   EdgeTypes: {
     emptyEdge: {
       shapeId: "#emptyEdge",
@@ -83,3 +84,15 @@ export default {
     }
   }
 }
+
+// These keys are arbitrary (but must match the config)
+// However, GraphView renders text differently for empty types
+// so this has to be passed in if that behavior is desired.
+const EMPTY_TYPE = "empty"; // Empty node type
+const SPECIAL_TYPE = "special";
+const SPECIAL_CHILD_SUBTYPE = "specialChild";
+const EMPTY_EDGE_TYPE = "emptyEdge";
+const SPECIAL_EDGE_TYPE = "specialEdge";
+
+
+export {GraphConfig, EMPTY_TYPE, SPECIAL_TYPE, SPECIAL_CHILD_SUBTYPE, EMPTY_EDGE_TYPE, SPECIAL_EDGE_TYPE}

@@ -26,7 +26,9 @@ import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 
 import GraphView from '../components/graph-view.js'
-import GraphConfig from './graph-config.js' // Configures node/edge types
+
+// Configures node/edge types
+import {GraphConfig, EMPTY_TYPE, SPECIAL_TYPE, SPECIAL_CHILD_SUBTYPE, EMPTY_EDGE_TYPE, SPECIAL_EDGE_TYPE} from './graph-config.js'
 
 const styles = {
   graph: {
@@ -37,14 +39,6 @@ const styles = {
 
 const NODE_KEY = "id" // Key used to identify nodes
 
-// These keys are arbitrary (but must match the config)
-// However, GraphView renders text differently for empty types
-// so this has to be passed in if that behavior is desired.
-const EMPTY_TYPE = "empty"; // Empty node type
-const SPECIAL_TYPE = "special";
-const SPECIAL_CHILD_SUBTYPE = "specialChild";
-const EMPTY_EDGE_TYPE = "emptyEdge";
-const SPECIAL_EDGE_TYPE = "specialEdge";
 
 // NOTE: Edges must have 'source' & 'target' attributes
 // In a more realistic use case, the graph would probably originate
@@ -85,11 +79,13 @@ const sample = {
     {
       "source": 1,
       "target": 2,
+      "title": "text on line",
       "type": SPECIAL_EDGE_TYPE
     },
     {
       "source": 2,
       "target": 4,
+      "title": "transformed",
       "type": EMPTY_EDGE_TYPE
     }
   ]

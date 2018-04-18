@@ -1,0 +1,13 @@
+http://www.vrt.com.au/downloads/vrt-network-equipment
+
+License
+The shapes are offered under a Creative Commons Attribute-ShareAlike V3 license which allows commercial and non-commercial use, modification and redistribution as long as the terms of the license are met.
+
+An exemption from the attribution clause is given for "intended use", which is defined as the use of these shapes to create network diagrams representing existing or planned networks, wherein the resulting diagrams may then be distributed without attribution. In other words, you don't need to mark all your diagrams with a link to the VRT Systems website just because it has some of our shapes in it (though that would be nice :), but we do require the license terms be honoured (with attribution) when redistributing the collection (as a whole or in part, either as a LibreOffice/OpenOffice extension, or repackaged in other formats).
+
+
+Contribute
+We're hosting the source on Bitbucket - if you want to contribute, head on over to the project page.
+
+https://bitbucket.org/vrtsystems/odf-extension-vrt-network-equipment
+

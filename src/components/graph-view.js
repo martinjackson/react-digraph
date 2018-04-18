@@ -669,7 +669,6 @@ class GraphView extends Component {
 
     d3Node.selectAll("text").remove();
 
-    let typeText = this.props.nodeTypes[d.type].typeText;
     let style = this.getTextStyle(d, this.props.selected);
 
     let el = d3Node.append('text')
@@ -677,9 +676,11 @@ class GraphView extends Component {
       .attr('style', style)
       .attr('dy', textOffset);
 
-    el.append('tspan')
-      .attr('opacity', 0.5)
-      .text(typeText);
+    if (this.props.nodeTypes[d.type]) {
+      el.append('tspan')
+        .attr('opacity', 0.5)
+        .text(this.props.nodeTypes[d.type].typeText);
+    }
 
     if (title) {
       // User defined/secondary text
@@ -883,7 +884,7 @@ GraphView.propTypes = {
 
 GraphView.defaultProps = {
   readOnly: false,
-  maxTitleChars: 9,
+  maxTitleChars: 14,
   transitionTime: 150,
   primary: 'dodgerblue',
   light: '#FFF',
@@ -908,10 +909,11 @@ GraphView.defaultProps = {
       d3.select(domNode).append("use");
     }
 
-    let style = graphView.getEdgeStyle(datum, graphView.props.selected);
+    let eStyle = graphView.getEdgeStyle(datum, graphView.props.selected);
     let trans = graphView.getEdgeHandleTransformation(datum)
+
     d3.select(domNode)
-      .attr("style", style)
+      .attr("style", eStyle)
       .select("use")
         .attr("xlink:href", function(d){ return graphView.props.edgeTypes[d.type].shapeId })
         .attr("width", graphView.props.edgeHandleSize)
@@ -920,7 +922,20 @@ GraphView.defaultProps = {
 
     d3.select(domNode)
       .select('path')
+        .attr("style", eStyle)
         .attr('d', graphView.getPathDescription);
+
+    let tStyle = (datum === graphView.props.selected) ?    // isSelected
+              graphView.state.styles.edge.selectedString :
+              graphView.state.styles.text.baseString;
+    tStyle += ";stroke-width:1"        // override inherited g.edge.strokeWidth: 2px
+
+
+    graphView.renderNodeText(datum, domNode);
+    d3.select(domNode).select("text")
+       .attr("style", tStyle)
+       .attr('transform', trans);
+
   },
   renderNode: (graphView, domNode,  datum, index, elements) => {
 
